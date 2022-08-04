@@ -71,7 +71,7 @@
 
 <body>
   <div class="pop-up">
-    <div class="swiper-container">
+    <!-- <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img src="" alt="">
@@ -80,7 +80,22 @@
           <img src="" alt="">
         </div>
       </div>
-    </div>
+    </div> -->
+    <ul>
+      <li class="pop-up-first">
+        <a href="#">
+          3초면 끝! 지금 가입하고
+          <span>10%쿠폰, 무료배송쿠폰 받기</span>
+        </a>
+      </li>
+      <li class="pop-up-second">
+        <a href="#">
+          평일 오전
+          <strong>10시까지</strong> 주문시 당일 로스팅 + 당일 발송
+        </a>
+      </li>
+    </ul>
+
   </div>
   <!-- 전체영역 -->
   <div class="wrap">
@@ -122,7 +137,7 @@
                   </ul>
                 </li>
                 <li>
-                  <a href="#" class="mainmenu">shop</a>
+                  <a href="#" class="mainmenu mainmenu-focus">shop</a>
                   <ul class="depth2">
                     <li><a href="#">coffee</a></li>
                     <li><a href="#">goods</a></li>
@@ -149,6 +164,16 @@
             <div class="search-box-password">
               <input type="password" class="password">
               <img src="images/bt_top_search_header.png" alt="" class="password-img">
+              <div class="password-hv">
+                <h2>추천검색어</h2>
+                <p>
+                  <a href="#">#콜롬비아</a>
+                  <a href="#">#게이샤</a>
+                  <a href="#">#에티오피아</a>
+                  <a href="#">#블렌드</a>
+                  <a href="#">#샘플러</a>
+                </p>
+              </div>
             </div>
             <div class="cart-wrap">
               <a href="#" class="cart">카트</a>
@@ -160,7 +185,31 @@
     </header>
     <!-- 비주얼 -->
     <section class="visual">
-      <div class="inner"></div>
+      <div class="swiper-container sw-visual">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-visual-navbar">
+            <div class="swiper-button-next sw-next-bt"></div>
+            <div class="swiper-button-prev sw-prev-bt"></div>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/visual1.jpg" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/visual2.jpg" alt="">
+
+          </div>
+          <div class="swiper-slide">
+            <img src="images/visual3.jpg" alt="">
+
+          </div>
+
+          <div class="sw-control">
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- 공지사항 -->
     <section class="notice">

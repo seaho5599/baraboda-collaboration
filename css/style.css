@@ -66,9 +66,31 @@ body {
   text-align: center;
   text-decoration: none;
   background-color: #fc5240;
+  overflow: hidden;
 }
 
+.pop-up-first{
+  background:#fc5240;
+}
+.pop-up-first a{
+  color: #fff;
+}
 
+.pop-up-first span{
+  color: #ffeca1;
+}
+
+.pop-up-second{
+  background:#111;
+}
+
+.pop-up-second a{
+  color: #fff;
+}
+
+.pop-up-second strong{
+  color: #fc5240;
+}
 
 /* 전체영역 */
 .wrap{
@@ -78,9 +100,12 @@ body {
 
 /* 헤더영역 */
 .header{
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 50px;
   display: block;
-
+  width: 100%;
+  z-index: 9999;
 }
 
 
@@ -172,7 +197,7 @@ body {
   height: 70px;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .gnb{
@@ -192,6 +217,7 @@ body {
   margin-right: 35px;
   transition: all 0.5s;
 }
+
 
 .mainmenu::after{
   content: '';
@@ -223,6 +249,25 @@ body {
   font-weight: 700;
   color: #222;
 }
+
+.mainmenu-focus{
+  color: #fc5240 !important;
+}
+/* nth-child 안먹네요.. 우선순위때문인거같아요 */
+
+.depth1 > li:nth-child(3)::after{
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #ff5880;
+  border-radius: 50%;
+  vertical-align: top;
+  top: 20px;
+  right: -6px;
+  position: absolute;
+}
+
 
 .depth1>li:hover .depth2{
   position: absolute;
@@ -302,6 +347,62 @@ body {
   display: block;
 }
 
+/* password-hv를 호버했을때 포커스 안빠지게하는 가림막 */
+.password-hv::before{
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  display: block;
+  width: 200px;
+  height: 300px;
+  z-index: -1;
+}
+
+
+.password-hv{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  /* display: block; */
+  width: 300px;
+  opacity: 0;
+  background: rgba(255,255,255,0.9);
+  transition: opacity .25s ease;
+  z-index: 999;
+  border-radius: 0 20px 0px 20px;
+  visibility: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 200px;
+  max-height: 230px;
+  border: 0px solid #eee;
+  box-shadow: 3px 3px 6px rgb(0 0 0 / 5%);
+  text-align: left;
+}
+
+.search-box-password:hover .password-hv{
+  opacity: 1;
+  visibility: visible;
+}
+
+.password-hv h2{
+  font-size: 18px;
+  margin-bottom:14px;
+}
+.password-hv p a {
+  color: #fc5240;
+  font-size: 14px;
+  display: inline-block;
+  margin: 4px 6px;
+  cursor: pointer;
+  transition: color .25s ease,background .25s ease;
+}
+.password-hv p a:hover{
+  color: #555;
+}
+
+
 .cart-wrap{
   position: relative;
   display: inline-block;
@@ -372,10 +473,26 @@ body {
 
 /* 비주얼 영역 */
 .visual{
-  padding: 1500px 0;
+  position: relative;
+  display: block;
 }
+.sw-visual{
+}
+
+.swiper-visual-navbar{}
+
+.swiper-slide{
+}
+.swiper-slide img {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
 /* 공지사항 영역 */
-.notice{}
+.notice{
+  padding: 800px 0;
+}
 /* 인트로 영역 */
 
 /* 아이템 리스트 */
