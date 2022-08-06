@@ -38,6 +38,7 @@ window.onload = function () {
     AOS.init();
 
 
+
     //     $("#wrapper").dotdotdot({
     //         wrapper  : 'div',  /*  콘텐트를 감쌀 요소. */
     //         ellipsis: '... ',  /*  말줄임표를 뭘로 할지 */
@@ -55,31 +56,72 @@ window.onload = function () {
     //     $('.pop-up ul').delay(1000);
     //     $('.pop-up ul').animate({marginTop: "-40px"})
     // });
-    
-    $('.pop-up>ul>li').hide();
-    $('.pop-up>ul>li:first-child').show();
-    
-    setInterval(function(){
-        $('.pop-up>ul>li:first-child').hide()
-        .next().show().end(1000)
-        .appendTo('.pop-up>ul');
-    },5000);
 
 
-    // 스와이퍼
-    new Swiper('.sw-visual',{
+    // 유지보수가 어려움
+    // $('.pop-up>ul>li').hide();
+    // $('.pop-up>ul>li:first-child').show();
+
+    // setInterval(function(){
+    //     $('.pop-up>ul>li:first-child').hide()
+    //     .next().show().end(1000)
+    //     .appendTo('.pop-up>ul');
+    // },5000);
+
+    // 유지보수 용이
+    let popLi = $('.pop-up>ul>li');
+    let popTotal = popLi.length;
+    let popShowIndex = 0;
+    let popShowTime = 4000;
+
+    function showPop() {
+        popShowIndex++; // index를 증가 시켜야지 li나옴
+        if (popShowIndex >= popTotal) {
+            popShowIndex = 0;
+        }
+        $.each(popLi, function (index, item) {
+            popLi.show()
+            popLi.eq(popShowIndex).hide()
+        })
+    }
+
+    setInterval(showPop, popShowTime);
+
+    // 비주얼 슬라이드
+    new Swiper('.sw-visual', {
+        effect: 'fade',
         loop: true,
-        effect : 'fade',
-        speed: 500,
+        speed: 1000,
         autoplay: {
             delay: 3000,
+            disableOnInteraction: false,
         },
-        pagination: {
-            el: ".swiper-pagination",
-        },
+
         navigation: {
-            nextEl: ".sw-next-bt",
-            prevEl: ".sw-prev-bt",
+            prevEl: '.sw-visual-prev',
+            nextEl: '.sw-visual-next'
         },
-    })
+
+        pagination: {
+            el: '.sw-visual-pg',
+            clickable: true
+        }
+    });
+
+    // 공지사항 슬라이드
+    let sw_notice = new Swiper('.sw-notice', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+            prevEl: '.sw-notice-prev',
+            nextEl: '.sw-notice-next'
+        },
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+    });
+
+
 }
