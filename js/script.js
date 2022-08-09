@@ -54,14 +54,24 @@ window.onload = function () {
   //     $('.pop-up ul').animate({marginTop: "-40px"})
   // });
   
-  $('.pop-up>ul>li').hide();
-  $('.pop-up>ul>li:first-child').show();
-  
-  setInterval(function(){
-      $('.pop-up>ul>li:first-child').hide()
-      .next().show().end(1000)
-      .appendTo('.pop-up>ul');
-  },5000);
+    // 유지보수 용이
+    let popLi = $('.pop-up>ul>li');
+    let popTotal = popLi.length;
+    let popShowIndex = 0;
+    let popShowTime = 4000;
+
+    function showPop() {
+        popShowIndex++; // index를 증가 시켜야지 li나옴
+        if (popShowIndex >= popTotal) {
+            popShowIndex = 0;
+        }
+        $.each(popLi, function (index, item) {
+            popLi.show()
+            popLi.eq(popShowIndex).hide()
+        })
+    }
+
+    setInterval(showPop, popShowTime);
 
 
   // 비주얼 슬라이드
@@ -148,7 +158,4 @@ window.onload = function () {
     `;
     temp.innerHTML = htmlTxt;
   };
-      
-  // 아이템 리스트 상품설명 부분 색상 교체
-  document.getElementById("c-ecba19").css('color', '#ecba19');
 };
