@@ -1071,7 +1071,7 @@ body {
 }
 
 .footer-sns .insta {
-  display: inline-block;
+  display: block;
   width: 28px;
   height: 28px;
   background: url('../images/footer-insta.svg') no-repeat center;
@@ -1081,12 +1081,12 @@ body {
 }
 
 .footer-sns .blog {
-  display: inline-block;
+  display: block;
   width: 28px;
   height: 28px;
   background: url('../images/footer-blog.svg') no-repeat center;
   background-size: contain;
-  float: right;
+  float: right; 
   font-size: 0;
   margin-left: 5px;
 }
