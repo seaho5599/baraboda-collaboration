@@ -1,37 +1,82 @@
 $(document).ready(function () {
-    // 헤더 픽스하기
-    let headerBottom = $('.header-bottom')
-    let headerTop = $('.header-top')
-    let logoFix = $('.logo-fix')
-    let headerBottomFix = $('.header-bottom-fix')
+  // 모바일메뉴
+  let mbWrapClose = $('.mb-wrap-close');
+  let mbMoreMenu = $('.mb-more-menu');
+  let mbDim = $('.mb-dim');
+  mbMoreMenu.click(function(){
+    $('.mb-wrap').addClass('mb-wrap-open');
+    mbDim.show();
+    $('.header').hide();
+  });
+  function mbClose(){
+    $('.mb-wrap').removeClass('mb-wrap-open');
+    mbDim.hide();
+    $('.header').show();
+  }
+  mbWrapClose.click(function(){
+    mbClose();
+  })
+  mbDim.click(function(){
+    mbClose();
+  })
+  // 모바일메뉴 클릭
+  let shopBtn = $('.shop-btn');
+  shopBtn.click(function(){
+    $('.mb-depth2-open').slideToggle();
+    shopBtn.toggleClass('shop-btn-open');
+    $('.shop-orange').toggleClass('shop-orange-open');
+  });
 
+  // 반응형 모바일메뉴
+  $(window).resize(function(){
+    let temp = $(window).width()
+    if(temp > 1000){
+    mbClose();
+    $('.mb-depth2-open').stop().slideUp();
+    shopBtn.removeClass('shop-btn-open');
+    $('.shop-orange').removeClass('shop-orange-open');
+    }
+  });
 
-    $(window).scroll(function () {
-        let temp = $(window).scrollTop();
-        console.log(temp);
-        if (temp > 50) {
-            headerTop.hide()
-            headerBottom.addClass('header-bottom-fix')
-            logoFix.css({
-                'width': '196px',
-                'opacity': '1',
-                'visibility': 'visible',
-                'margin-right': '56px',
-                'margin-top': '15px'
-            });
-        } else {
-            headerTop.show()
-            headerBottom.removeClass('header-bottom-fix')
-            logoFix.css({
-                'width': '0',
-                'opacity': '0',
-                'visibility': 'hidden',
-                'margin-right': '0',
-                'margin-top': '0'
-            });
-            headerBottomFix.hide()
-        }
-    });
+  // 헤더 픽스하기
+  let headerBottom = $('.header-bottom')
+  let headerTop = $('.header-top')
+  let logoFix = $('.logo-fix')
+  let headerBottomFix = $('.header-bottom-fix')
+
+  $(window).scroll(function () {
+    let temp = $(window).scrollTop();
+    console.log(temp);
+    if (temp > 50) {
+      headerTop.hide()
+      headerBottom.addClass('header-bottom-fix')
+      logoFix.css({
+        'width': '196px',
+        'opacity': '1',
+        'visibility': 'visible',
+        'margin-right': '56px',
+        'margin-top': '15px'
+      });
+    } else {
+      headerTop.show()
+      headerBottom.removeClass('header-bottom-fix')
+      logoFix.css({
+        'width': '0',
+        'opacity': '0',
+        'visibility': 'hidden',
+        'margin-right': '0',
+        'margin-top': '0'
+      });
+      headerBottomFix.hide()
+    }
+  });
+  
+  $('.mainmenu').click(function (event) {
+    event.preventDefault();
+  })
+  $('.password-img').click(function () {
+    alert("검색어를 입력해주세요")
+  })
 });
 
 window.onload = function () {
@@ -53,25 +98,25 @@ window.onload = function () {
   //     $('.pop-up ul').delay(1000);
   //     $('.pop-up ul').animate({marginTop: "-40px"})
   // });
-  
-    // 유지보수 용이
-    let popLi = $('.pop-up>ul>li');
-    let popTotal = popLi.length;
-    let popShowIndex = 0;
-    let popShowTime = 4000;
 
-    function showPop() {
-        popShowIndex++; // index를 증가 시켜야지 li나옴
-        if (popShowIndex >= popTotal) {
-            popShowIndex = 0;
-        }
-        $.each(popLi, function (index, item) {
-            popLi.show()
-            popLi.eq(popShowIndex).hide()
-        })
+  // 유지보수 용이
+  let popLi = $('.pop-up>ul>li');
+  let popTotal = popLi.length;
+  let popShowIndex = 0;
+  let popShowTime = 4000;
+
+  function showPop() {
+    popShowIndex++; // index를 증가 시켜야지 li나옴
+    if (popShowIndex >= popTotal) {
+      popShowIndex = 0;
     }
+    $.each(popLi, function (index, item) {
+      popLi.show()
+      popLi.eq(popShowIndex).hide()
+    })
+  }
 
-    setInterval(showPop, popShowTime);
+  setInterval(showPop, popShowTime);
 
 
   // 비주얼 슬라이드
@@ -80,15 +125,15 @@ window.onload = function () {
     loop: true,
     speed: 1000,
     autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
+      delay: 3000,
+      disableOnInteraction: false,
     },
-  
+
     navigation: {
       prevEl: '.sw-visual-prev',
       nextEl: '.sw-visual-next'
     },
-  
+
     pagination: {
       el: '.sw-visual-pg',
       clickable: true
@@ -97,19 +142,19 @@ window.onload = function () {
 
   // 공지사항 슬라이드
   let sw_notice = new Swiper('.sw-notice', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      navigation: {
-        prevEl: '.sw-notice-prev',
-        nextEl: '.sw-notice-next'
-      },
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-    });
-  
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    navigation: {
+      prevEl: '.sw-notice-prev',
+      nextEl: '.sw-notice-next'
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+  });
+
   // 아이템 리스트 배열
   let itemGoodsArr = [{
     link: '#',
@@ -144,18 +189,18 @@ window.onload = function () {
   // 아이템 리스트 데이터 화면 출력
   let itemGoods = $('.item-goods-list > li');
   let itemTotal = itemGoods.length;
-  for(let i=0; i < itemTotal; i++) {
+  for (let i = 0; i < itemTotal; i++) {
     let temp = itemGoods[i];
     let htmlTxt = `
-      <a href="${itemGoodsArr[i].link}">
-        <img src="images/${itemGoodsArr[i].pic}" art="${itemGoodsArr[i].title}">
-      </a>
-      <div class="item-goods-txt">
-        <a href="${itemGoodsArr[i].link}" class="item-goods-title">${itemGoodsArr[i].title}</a>
-        <span class="item-goods-info" style="color:${itemGoodsArr[i].color}">${itemGoodsArr[i].info}</span>
-        <span class="item-goods-price">${itemGoodsArr[i].price}</span>
-      </div>
-    `;
+    <a href="${itemGoodsArr[i].link}">
+      <img src="images/${itemGoodsArr[i].pic}" art="${itemGoodsArr[i].title}">
+    </a>
+    <div class="item-goods-txt">
+      <a href="${itemGoodsArr[i].link}" class="item-goods-title">${itemGoodsArr[i].title}</a>
+      <span class="item-goods-info" style="color:${itemGoodsArr[i].color}">${itemGoodsArr[i].info}</span>
+      <span class="item-goods-price">${itemGoodsArr[i].price}</span>
+    </div>
+  `;
     temp.innerHTML = htmlTxt;
   };
 };
